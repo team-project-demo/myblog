@@ -40,8 +40,8 @@ namespace MyBlog.Controllers
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize).ToListAsync();
 
-            PageViewModel paginator = new PageViewModel(count, pageNumber, pageSize);
-            PostsViewModel viewModel = new PostsViewModel()
+            PageViewModel paginator = new(count, pageNumber, pageSize);
+            PostsViewModel viewModel = new()
             {
                 Posts = items,
                 Paginator = paginator
