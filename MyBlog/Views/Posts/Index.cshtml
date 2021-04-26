@@ -14,6 +14,16 @@
     <p><a asp-action="Create">Create New Post</a></p>
 }
 
+<form method="get">
+    <div class="form-inline form-group">
+        <label class="control-label">Категория:</label>
+        &nbsp;&nbsp;
+        <select name="categoryId" asp-items="Model.Categories" class="form-control"></select>
+        &nbsp;&nbsp;&nbsp;
+        <input type="submit" value="Выбрать" class="btn btn-success" />
+    </div>
+</form>
+
 @foreach (var item in Model.Posts)
 {
     <div class="card card_margin">
@@ -24,6 +34,7 @@
         <div class="card-body">
             <img src="@Html.DisplayFor(modelItem => item.ImagePath)" alt="..." class="post" />
             <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+            <h6 class="card-title">Категория: @Html.DisplayFor(modelItem => item.Category.Name)</h6>
             <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
         </div>
