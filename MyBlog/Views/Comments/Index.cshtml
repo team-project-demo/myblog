@@ -6,10 +6,10 @@
 }
 
 <h2>Comments</h2>
-<h4>Post: @ViewBag.Post.Title</h4>
+<h5>Post: @ViewBag.Post.Title</h5>
 
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" asp-route-id="@ViewBag.Post.Id">Create New</a>
     </p>
     <table class="table">
         <thead>
