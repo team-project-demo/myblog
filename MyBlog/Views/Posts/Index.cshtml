@@ -9,7 +9,7 @@
 
 <h2>My Personal Blog</h2>
 
-@if (User.Identity.Name == "admin123@ukr.net")
+@if (User.IsInRole("SuperAdmin"))
 {
     <p><a asp-action="Create">Create New Post</a></p>
 }
@@ -42,10 +42,13 @@
             |
             <a asp-action="Index" asp-controller="Comments" asp-route-id="@item.Id">Comments</a>
             |
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            |
+            @if (User.IsInRole("SuperAdmin"))
+            {
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <span>|</span>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <span>|</span>
+            }
         </div>
     </div>
 }

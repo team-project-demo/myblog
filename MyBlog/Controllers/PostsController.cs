@@ -11,6 +11,7 @@ using MyBlog.Data;
 using MyBlog.Models;
 using MyBlog.ViewModels;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyBlog.Controllers
 {
@@ -81,6 +82,7 @@ namespace MyBlog.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Create()
         {
             var categories = _context.Categories.ToList();
@@ -89,8 +91,6 @@ namespace MyBlog.Controllers
         }
 
         // POST: Posts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,Content,PublishDate,PublishTime,ImagePath,CategoryId")] Post post,
@@ -128,6 +128,7 @@ namespace MyBlog.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,8 +145,6 @@ namespace MyBlog.Controllers
         }
 
         // POST: Posts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Content,PublishDate,PublishTime,ImagePath")] Post post)
@@ -179,6 +178,7 @@ namespace MyBlog.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
